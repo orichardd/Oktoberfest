@@ -24,6 +24,8 @@ public record CreateWorkerDTO(
         String address,
         @NotBlank
         String phoneNumber,
+        @NotBlank
+        String email,
         @NotNull
         ShirtSize shirtSize,
         @NotNull

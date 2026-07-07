@@ -36,42 +36,91 @@ public class Worker {
     private String phoneNumber;
 
     @Column(nullable = false)
+    private String email;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private ShirtSize shirtSize;
 
-    @Column(nullable = false)
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "startTime",
+                    column = @Column(name = "domingo_start_time", nullable = true)),
+            @AttributeOverride(name = "endTime",
+                    column = @Column(name = "domingo_end_time", nullable = true))
+    })
     private Availability domingo;
 
-    @Column(nullable = false)
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "startTime",
+                    column = @Column(name = "segunda_start_time", nullable = true)),
+            @AttributeOverride(name = "endTime",
+                    column = @Column(name = "segunda_end_time", nullable = true))
+    })
     private Availability segunda;
 
-    @Column(nullable = false)
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "startTime",
+                    column = @Column(name = "terca_start_time", nullable = true)),
+            @AttributeOverride(name = "endTime",
+                    column = @Column(name = "terca_end_time", nullable = true))
+    })
     private Availability terca;
 
-    @Column(nullable = false)
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "startTime",
+                    column = @Column(name = "quarta_start_time", nullable = true)),
+            @AttributeOverride(name = "endTime",
+                    column = @Column(name = "quarta_end_time", nullable = true))
+    })
     private Availability quarta;
 
-    @Column(nullable = false)
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "startTime",
+                    column = @Column(name = "quinta_start_time", nullable = true)),
+            @AttributeOverride(name = "endTime",
+                    column = @Column(name = "quinta_end_time", nullable = true))
+    })
     private Availability quinta;
 
-    @Column(nullable = false)
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "startTime",
+                    column = @Column(name = "sexta_start_time", nullable = true)),
+            @AttributeOverride(name = "endTime",
+                    column = @Column(name = "sexta_end_time", nullable = true))
+    })
     private Availability sexta;
 
-    @Column(nullable = false)
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "startTime",
+                    column = @Column(name = "sabado_start_time", nullable = true)),
+            @AttributeOverride(name = "endTime",
+                    column = @Column(name = "sabado_end_time", nullable = true))
+    })
     private Availability sabado;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private List<Shows> chosenShows;
 
     public Worker() {
     }
 
-    public Worker(String firstName, String lastName, String CPF, Date birthDate, String address, String phoneNumber, ShirtSize shirtSize, Availability domingo, Availability segunda, Availability terca, Availability quarta, Availability quinta, Availability sexta, Availability sabado, List<Shows> chosenShows) {
+    public Worker(String firstName, String lastName, String CPF, Date birthDate, String address, String phoneNumber, String email, ShirtSize shirtSize, Availability domingo, Availability segunda, Availability terca, Availability quarta, Availability quinta, Availability sexta, Availability sabado, List<Shows> chosenShows) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.CPF = CPF;
         this.birthDate = birthDate;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.email = email;
         this.shirtSize = shirtSize;
         this.domingo = domingo;
         this.segunda = segunda;
@@ -205,5 +254,13 @@ public class Worker {
 
     public void setChosenShows(List<Shows> chosenShows) {
         this.chosenShows = chosenShows;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

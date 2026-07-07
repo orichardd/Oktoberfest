@@ -14,6 +14,7 @@ public record WorkerDTO(
         Date birthDate,
         String address,
         String phoneNumber,
+        String email,
         ShirtSize shirtSize,
         Availability domingo,
         Availability segunda,
