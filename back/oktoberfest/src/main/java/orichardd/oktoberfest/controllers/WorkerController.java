@@ -3,10 +3,7 @@ package orichardd.oktoberfest.controllers;
 import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import orichardd.oktoberfest.DTOs.CreateWorkerDTO;
 import orichardd.oktoberfest.repositories.WorkerRepository;
 import orichardd.oktoberfest.services.WorkerService;
@@ -27,11 +24,9 @@ public class WorkerController {
         return ResponseEntity.ok("Adicionado com sucesso.");
     }
 
-    @PostMapping("/senha")
-    public void Generate(@RequestBody String senha){
-        String rawPassword = senha  ;
-        String hash = new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder().encode(rawPassword);
-        System.out.println(hash);
+    @GetMapping("/getAll")
+    public ResponseEntity<?> GetAllWorkers(){
+        return ResponseEntity.ok(workerService.getAllWorkers());
     }
 
 }

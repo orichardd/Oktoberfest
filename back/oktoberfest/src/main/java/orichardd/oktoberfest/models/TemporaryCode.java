@@ -27,11 +27,9 @@ public class TemporaryCode {
         SecureRandom random = new SecureRandom();
         StringBuilder sb = new StringBuilder();
         String chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-
         for (int i = 0; i < 24; i++) {
             sb.append(chars.charAt(random.nextInt(chars.length())));
         }
-
         return sb.toString();
     }
 

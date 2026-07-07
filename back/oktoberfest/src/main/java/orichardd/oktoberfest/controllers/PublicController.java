@@ -12,14 +12,18 @@ import orichardd.oktoberfest.services.WorkerService;
 public class PublicController {
 
     private final WorkerService workerService;
+    private final TemporaryCodeService temporaryCodeService;
 
-    public PublicController(WorkerService workerService) {
+    public PublicController(WorkerService workerService, TemporaryCodeService temporaryCodeService) {
         this.workerService = workerService;
+        this.temporaryCodeService = temporaryCodeService;
     }
 
     @PostMapping("/create")
     public ResponseEntity<?> CreateWorker(@RequestBody @Valid CreateWorkerDTO dto, @RequestParam String code){
-        TemporaryCodeService.ValidateCode(code);
+        if(!temporaryCodeService.ValidateCode(code)){
+            return ResponseEntity.badRequest().body("Código inválido, peça outro link válido.");
+        }
         workerService.CreateWorker(dto);
         return ResponseEntity.ok("Adicionado com sucesso.");
     }
