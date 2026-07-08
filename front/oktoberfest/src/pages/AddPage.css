@@ -1,0 +1,188 @@
+.addPage-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 30%;
+    width: 60%;
+    max-width: 600px;
+    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.174);
+    border-radius: 20px;
+    gap: 30px;
+    padding: 10px;
+    animation: fadeSlideIn 0.6s ease-out forwards;
+}
+.addPage-buttons{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: space-between;
+}
+.addPage-button{
+    width: 50%;
+    height: auto;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.174);
+    background-color: var(--primary);
+    padding: 20px;
+    transition: all 0.3s ease-in-out; 
+    text-decoration: none;
+    color: black;  
+    text-align: center;
+    font-size: medium;
+}
+
+.addPage-button:hover{
+    cursor: pointer;
+    background-color: var(--primary-hover);
+}
+.addPage-button:active{
+    box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.174);
+}
+.addPage-link {
+    animation: fadeSlideIn 0.4s ease-out forwards;
+    position: absolute;
+    left: auto;
+    right: auto;
+}
+.create-link-outer {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.431);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-link {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 30%;
+    width: 60%;
+    max-width: 600px;
+    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.174);
+    border-radius: 20px;
+    gap: 30px;
+    padding: 10px;
+    animation: fadeSlideIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.create-link-header{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    p{
+        margin: 0;
+    }
+}
+.create-link-close{
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary);
+    border: none;
+    border-radius: 25%;
+    font-size: large;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; 
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.174);
+
+    img{
+        height: 50%;
+        width: auto;
+    }
+}
+.create-link-close:hover{
+    background-color: var(--primary-hover);
+}
+.create-link-close:active{
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.174);
+}
+.create-link-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    background-color: var(--light-gray);
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 0px;
+    box-sizing: border-box;
+    button{
+        background-color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 15px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out; 
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.174);
+    }
+}
+.create-link-content button:hover{
+    background-color: var(--primary);
+}
+.create-link-content button:active{
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.174);
+}
+.create-link-buttons{
+    display: flex;
+    gap: 10px;
+}
+.addPage-return{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+.return-button{
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary);
+    border: none;
+    border-radius: 25%;
+    padding:5px;
+    font-size: large;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; 
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.174);
+    img{
+        transform: scale(-1, -1);
+    }
+}
+.return-button:hover{
+    background-color: var(--primary-hover);
+}
+.return-button:active{
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.174);
+}
