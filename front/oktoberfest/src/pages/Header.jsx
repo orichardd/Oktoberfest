@@ -37,7 +37,7 @@ export default function Header() {
                     <div>
                         <h3>Miguel Fulber Gomes</h3>
                         <span>Suporte</span>
-                        <p>miguel.fulber@gmail.com</p>
+                        <p>miguel.fulber.gomes@gmail.com</p>
                     </div>
                 </div>
                 <p className="system-purpose">

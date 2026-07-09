@@ -43,7 +43,7 @@ export default function Dashboard() {
             try {
                 const data = await get("/worker/countPerShow");
                 let count = 0;
-                Object.entries(data).forEach(([quantidade]) => {
+                Object.entries(data).forEach(([show, quantidade]) => {
                     if(quantidade === 0) {
                         count++;
                     }
