@@ -10,13 +10,18 @@ export default function LoginPage(){
     const navigate = useNavigate();
 
     async function handleSubmit(e) {
-        e.preventDefault();
+    e.preventDefault();
+    try {
         await login(password);
+        
         navigate("/dashboard");
+    } catch (error) {
+        console.error("Falha ao logar, mantendo na página.", error);
     }
+}
 
     return (
-        <>
+        <div className="page">
             <Header />
             <div className="login-container">
                 <h2>Login</h2>
@@ -32,7 +37,8 @@ export default function LoginPage(){
                         <img src="/icons/right-arrow.png" alt="" />
                     </button>
                 </form>
+                <br />
             </div>
-        </>
+        </div>
     )
 }

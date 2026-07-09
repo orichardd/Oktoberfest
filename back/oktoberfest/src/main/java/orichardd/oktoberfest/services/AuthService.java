@@ -3,6 +3,8 @@ package orichardd.oktoberfest.services;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import orichardd.oktoberfest.DTOs.CheckJwtDTO;
+import orichardd.oktoberfest.exceptions.InvalidCredentialsException;
 
 @Service
 public class AuthService {
@@ -23,5 +25,11 @@ public class AuthService {
             throw new IllegalArgumentException("Senha inválida");
         }
         return jwtService.generateToken();
+    }
+
+    public void Check(CheckJwtDTO dto) {
+        if(!jwtService.isTokenValid(dto.token())){
+            throw new InvalidCredentialsException("Token inválido.");
+        }
     }
 }

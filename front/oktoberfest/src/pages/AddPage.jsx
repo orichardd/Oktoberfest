@@ -1,21 +1,24 @@
 import './AddPage.css';
 import Header from "./Header.jsx"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import { get } from "../api.js";
 
 export default function AddPage() {
 
     const [link, setLink] = useState(false);
     const [copy, setCopy] = useState(false);
-    const [url, setUrl] = useState("");
+    const [url, setUrl] = useState(null);
+    const thisUrl = "localhost:5173/";
 
     function handleAddClick() {
         setLink(!link);
-        setUrl("asodhaoisao");
     }
 
+
     function handleCopyClick() {
-        navigator.clipboard.writeText(url);
+        const completeUrl = thisUrl + "code/" + url;
+        navigator.clipboard.writeText(completeUrl);
         setCopy(true);
         setTimeout(() => {
             setCopy(false);
@@ -23,6 +26,8 @@ export default function AddPage() {
     }
 
     function handleShareClick() {
+        const completeUrl = thisUrl + "code/" + url;
+
         if (navigator.share) {
             navigator.share({
                 title: "Link de cadastro",
@@ -32,14 +37,28 @@ export default function AddPage() {
                 console.log("Compartilhamento cancelado ou falhou", error);
             });
         } else {
-            navigator.clipboard.writeText(url);
+            navigator.clipboard.writeText(completeUrl);
             setCopy(true);
             setTimeout(() => setCopy(false), 2000);
         }
     }
 
+    useEffect(() => {
+
+        const fetchUrl = async () => {
+            try {
+                const count = await get("/code/generate");
+                setUrl(count);
+            } catch (error) {
+                console.error("Erro ao buscar contagem de colaboradores:", error);
+            }
+        };
+
+        fetchUrl();
+    }, []);
+
     return (
-        <>
+        <div className="page">
             <Header />
             <div className="addPage-container">
                 <div className="addPage-return">
@@ -62,7 +81,13 @@ export default function AddPage() {
                             <button onClick={handleAddClick} className="create-link-close"><img src="/icons/close.png" alt="" /></button>
                         </div>
                         <div className="create-link-content">
-                            <p>{url}</p>
+                            {
+                                url === null ? (
+                                    <img className="loading" src="/icons/loading.png" alt="" />
+                                ) : (
+                                    <p>{thisUrl + "code/" + url}</p>
+                                )
+                            }
                             <div className="create-link-buttons">
                                 <button onClick={handleCopyClick} className="create-link-copy">
                                     <img src="/icons/copy.png" alt="" />
@@ -77,6 +102,6 @@ export default function AddPage() {
                     </div>
                 </div>
             )}
-        </>
+        </div>
     );
 }

@@ -1,6 +1,8 @@
 package orichardd.oktoberfest.controllers;
 
 import jakarta.validation.Valid;
+import org.apache.coyote.Response;
+import orichardd.oktoberfest.DTOs.CheckJwtDTO;
 import orichardd.oktoberfest.DTOs.LoginRequestDTO;
 import orichardd.oktoberfest.DTOs.LoginResponseDTO;
 import orichardd.oktoberfest.services.AuthService;
@@ -23,4 +25,5 @@ public class AuthController {
         System.out.println("login");
         return ResponseEntity.ok(new LoginResponseDTO(token));
     }
+
 }

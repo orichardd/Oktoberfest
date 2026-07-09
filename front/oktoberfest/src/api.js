@@ -1,7 +1,7 @@
 // api.js
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = "http://192.168.1.111:8080";
 
 const api = axios.create({
     baseURL: API_BASE_URL,
@@ -10,7 +10,6 @@ const api = axios.create({
     },
 });
 
-// Injeta o JWT automaticamente em toda requisição
 api.interceptors.request.use((config) => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -19,12 +18,11 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
-// --- JWT ---
 export async function login(password) {
     try {
         const response = await api.post("/auth/login", { password });
-        const token = response.data.token;
-        saveToken(token);
+        console.log(response.data.token);
+        saveToken(response.data.token);
     } catch (error) {
     console.error(error);
 

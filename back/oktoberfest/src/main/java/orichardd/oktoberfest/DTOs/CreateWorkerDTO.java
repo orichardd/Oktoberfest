@@ -28,19 +28,12 @@ public record CreateWorkerDTO(
         String email,
         @NotNull
         ShirtSize shirtSize,
-        @NotNull
         Availability domingo,
-        @NotNull
         Availability segunda,
-        @NotNull
         Availability terca,
-        @NotNull
         Availability quarta,
-        @NotNull
         Availability quinta,
-        @NotNull
         Availability sexta,
-        @NotNull
         Availability sabado,
         @NotNull
         List<Shows> chosenShows

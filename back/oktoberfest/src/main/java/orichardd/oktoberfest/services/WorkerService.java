@@ -3,10 +3,13 @@ package orichardd.oktoberfest.services;
 import org.springframework.stereotype.Service;
 import orichardd.oktoberfest.DTOs.CreateWorkerDTO;
 import orichardd.oktoberfest.DTOs.WorkerDTO;
+import orichardd.oktoberfest.miscellaneous.Shows;
 import orichardd.oktoberfest.models.Worker;
 import orichardd.oktoberfest.repositories.WorkerRepository;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class WorkerService {
@@ -73,5 +76,26 @@ public class WorkerService {
             throw new IllegalArgumentException("Colaborador não encontrado");
         }
         workerRepository.delete(worker);
+    }
+
+    public Long CountWorkers() {
+        return workerRepository.count();
+    }
+
+    public Map<Shows, Integer> CountPerShow() {
+
+        Map<Shows, Integer> counts = new EnumMap<>(Shows.class);
+
+        for (Shows show : Shows.values()) {
+            counts.put(show, 0);
+        }
+
+        for (Worker worker : workerRepository.findAll()) {
+            for (Shows show : worker.getChosenShows()) {
+                counts.put(show, counts.get(show) + 1);
+            }
+        }
+
+        return counts;
     }
 }

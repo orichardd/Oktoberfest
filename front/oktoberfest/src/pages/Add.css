@@ -6,7 +6,7 @@
     gap: 15px;
     width: 90%;
     max-width: 500px;
-    margin: 12vh auto 40px auto;
+    margin: 10vh auto 40px auto;
     padding: 30px 25px;
     box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.174);
     border-radius: 20px;
@@ -57,4 +57,10 @@
 .add-form button[type="submit"]:hover {
     cursor: pointer;
     background-color: var(--primary-hover);
+}
+.add-form-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
 }

@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-between;
     min-height: 30%;
-    width: 60%;
+    min-width: 60%;
     max-width: 600px;
     box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.174);
     border-radius: 20px;
@@ -22,6 +22,22 @@
     transform: translateY(0);
   }
 }
+.cadastrados, .shows{
+    img {
+
+        animation: spin 0.5s linear infinite;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
 .dashboard-item{
     display: flex;
     gap: 20px;
@@ -36,7 +52,7 @@
     padding: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.174);
     border-radius: 10px;
-    width: 45%;
+    width: 50%;
     border: 2px solid var(--primary);
     font-size: large;
     p, h1{

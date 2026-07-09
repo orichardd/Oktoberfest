@@ -1,6 +1,6 @@
 .header {
     max-height: 7vh;
-    width: calc(100% - 20px);
+    width: 100%;
     top: 0;
     left: 0;
     right: 0;
@@ -125,4 +125,38 @@
         font-size: 14px;
         margin-bottom: 8px;
     }
+}
+.member-card{
+    display:flex;
+    gap:15px;
+    align-items:center;
+
+    padding:15px;
+
+    background:#f7f7f7;
+    border-radius:12px;
+
+    margin-top:15px;
+}
+
+.member-card img{
+    width:60px;
+    height:60px;
+}
+
+.member-card h3{
+    margin:0;
+    font-size:17px;
+}
+
+.member-card span{
+    display:block;
+    color:#666;
+    font-size:14px;
+    margin-top:2px;
+}
+
+.member-card p{
+    margin-top:6px;
+    font-size:14px;
 }

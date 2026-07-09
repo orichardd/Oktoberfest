@@ -10,14 +10,20 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<LoginPage />} />
-      <Route path="/create" element={<Add />} />
+      <Route path="/code/:code" element={<Add />} />
       <Route path="*" element={<LoginPage />} />
+      <Route path="/test" element={<ProtectedRoute />} />
       <Route path="/dashboard" element={
         <ProtectedRoute>
           <Dashboard />
         </ProtectedRoute>
       }
       />
+      <Route path="/create" element={
+        <ProtectedRoute>
+          <Add isManager={true} />
+        </ProtectedRoute>
+      } />
       <Route path="/add" element={
         <ProtectedRoute>
           <AddPage />

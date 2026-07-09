@@ -1,7 +1,8 @@
 import "./WorkersPage.css";
 import Header from "./Header.jsx";
-import workersData from "./api.json";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { get } from "../api.js";
 
 const DAYS = [
     { key: "domingo", label: "Domingo" },
@@ -18,8 +19,25 @@ function formatDate(isoString) {
 }
 
 export default function WorkersPage() {
+
+    const [workers, setWorkers] = useState(null);
+
+    useEffect(() => {
+
+        const fetchWorkers = async () => {
+            try {
+                const count = await get("/worker/getAll");
+                setWorkers(count);
+            } catch (error) {
+                console.error("Erro ao buscar contagem de colaboradores:", error);
+            }
+        };
+
+        fetchWorkers();
+    }, []);
+
     return (
-        <>
+        <div className="page">
             <Header />
             <div className="workers-container">
                 <div className="workers-return">
@@ -40,39 +58,57 @@ export default function WorkersPage() {
                                     <th>Telefone</th>
                                     <th>Email</th>
                                     <th>Camiseta</th>
+
                                     {DAYS.map((day) => (
                                         <th key={day.key}>{day.label}</th>
                                     ))}
+
                                     <th>Shows escolhidos</th>
                                 </tr>
                             </thead>
+
                             <tbody>
-                                {workersData.map((worker) => (
-                                    <tr key={worker.CPF}>
-                                        <td>{worker.firstName} {worker.lastName}</td>
-                                        <td>{worker.CPF}</td>
-                                        <td>{formatDate(worker.birthDate)}</td>
-                                        <td>{worker.phoneNumber}</td>
-                                        <td>{worker.email}</td>
-                                        <td>{worker.shirtSize}</td>
-                                        {DAYS.map((day) => {
-                                            const shift = worker[day.key];
-                                            return (
-                                                <td key={day.key}>
-                                                    {shift
-                                                        ? `${shift.startTime.slice(0, 5)} - ${shift.endTime.slice(0, 5)}`
-                                                        : "-"}
-                                                </td>
-                                            );
-                                        })}
-                                        <td>{worker.chosenShows.join(", ")}</td>
+                                {workers === null ? (
+                                    <tr>
+                                        <td colSpan={13} style={{ textAlign: "center" }}>
+                                            <img className="loading" src="/icons/loading.png" alt="Carregando..." />
+                                        </td>
                                     </tr>
-                                ))}
+                                ) : (
+                                    workers.map((worker) => (
+                                        <tr key={worker.CPF}>
+                                            <td>{worker.firstName} {worker.lastName}</td>
+                                            <td>{worker.CPF}</td>
+                                            <td>{formatDate(worker.birthDate)}</td>
+                                            <td>{worker.phoneNumber}</td>
+                                            <td>{worker.email}</td>
+                                            <td>{worker.shirtSize}</td>
+
+                                            {DAYS.map((day) => {
+                                                const shift = worker[day.key];
+
+                                                return (
+                                                    <td key={day.key}>
+                                                        {shift
+                                                            ? `${shift.startTime.substring(0, 5)} - ${shift.endTime.substring(0, 5)}`
+                                                            : "-"}
+                                                    </td>
+                                                );
+                                            })}
+
+                                            <td>
+                                                {worker.chosenShows?.length
+                                                    ? worker.chosenShows.join(", ")
+                                                    : "-"}
+                                            </td>
+                                        </tr>
+                                    ))
+                                )}
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }

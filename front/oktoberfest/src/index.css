@@ -1,11 +1,8 @@
 
-
-#root{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(100vh - 20px);
-  font-family: "SN Pro", "Google Sans", Roboto, Helvetica, Arial, sans-serif;
+#root {
+    width: 100%;
+    min-height: 100vh;
+    font-family: "SN Pro", "Google Sans", Roboto, Helvetica, Arial, sans-serif;
 }
 :root {
     --primary: #FFC949;
@@ -15,4 +12,41 @@
     --text: #222222;
     --shadow: rgba(0, 0, 0, 0.174);
     --light-gray: #f1f3f4;
+}
+
+.loading{
+    
+
+        animation: spin 0.5s linear infinite;
+    
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.page{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
 }
