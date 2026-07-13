@@ -14,7 +14,7 @@ export default function Header() {
             <header className="header">
                 <img src="/img/oktoberlogo.png" alt="logo da oktoberfest de igrejinha." />
                 <button className="header-button" onClick={handleClick}>
-                    Sobre
+                    <img src="/icons/icon.png" alt="" />
                 </button>
             </header>
             <div className={`about-section ${isAboutVisible ? "show" : ""}`}>
@@ -32,7 +32,7 @@ export default function Header() {
                 </div>
 
                 <div className="member-card">
-                    <a href="https://pokemondb.net/pokedex/darumaka"><img src="https://img.pokemondb.net/sprites/black-white/anim/normal/darumaka.gif" alt="Darumaka" /></a>
+                    <a href="https://pokemondb.net/pokedex/darumaka"><img src="https://img.pokemondb.net/sprites/black-white/anim/normal/psyduck.gif" alt="Darumaka" /></a>
 
                     <div>
                         <h3>Miguel Fulber Gomes</h3>
@@ -44,7 +44,7 @@ export default function Header() {
                     Desenvolvido para uso interno da organização da Oktoberfest 2026 de Igrejinha.
                 </p>
                 <p>
-                    Versão: 0.6
+                    Versão: 0.71
                 </p>
             </div>
         </>

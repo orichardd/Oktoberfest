@@ -16,13 +16,10 @@ public record WorkerDTO(
         String phoneNumber,
         String email,
         ShirtSize shirtSize,
-        Availability domingo,
-        Availability segunda,
-        Availability terca,
-        Availability quarta,
         Availability quinta,
         Availability sexta,
         Availability sabado,
+        Availability domingo,
         List<Shows> chosenShows
 ) {
 }

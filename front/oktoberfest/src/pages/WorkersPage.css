@@ -4,7 +4,7 @@
     padding: 20px;
     background-color: var(--surface);
     border-radius: 8px;
-    box-shadow: 0 2px 4px var(--shadow);
+    box-shadow: var(--box-shadow);
     margin: 20px auto;
     max-width: 95%;
     gap: 20px;

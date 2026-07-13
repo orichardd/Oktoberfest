@@ -3,6 +3,7 @@ package orichardd.oktoberfest.services;
 import org.springframework.stereotype.Service;
 import orichardd.oktoberfest.DTOs.CreateWorkerDTO;
 import orichardd.oktoberfest.DTOs.WorkerDTO;
+import orichardd.oktoberfest.exceptions.InvalidCredentialsException;
 import orichardd.oktoberfest.miscellaneous.Shows;
 import orichardd.oktoberfest.models.Worker;
 import orichardd.oktoberfest.repositories.WorkerRepository;
@@ -21,6 +22,10 @@ public class WorkerService {
     }
 
     public void CreateWorker(CreateWorkerDTO dto){
+        Worker found = workerRepository.findByCPFOrEmailOrPhoneNumber(dto.CPF(), dto.email(), dto.phoneNumber());
+        if(found != null){
+            throw new InvalidCredentialsException("Credenciais já cadastradas.");
+        }
         try{
             workerRepository.save(new Worker(
                     dto.firstName(),
@@ -31,13 +36,10 @@ public class WorkerService {
                     dto.phoneNumber(),
                     dto.email(),
                     dto.shirtSize(),
-                    dto.domingo(),
-                    dto.segunda(),
-                    dto.terca(),
-                    dto.quarta(),
                     dto.quinta(),
                     dto.sexta(),
                     dto.sabado(),
+                    dto.domingo(),
                     dto.chosenShows()
             ));
         }
@@ -58,13 +60,10 @@ public class WorkerService {
                         worker.getPhoneNumber(),
                         worker.getEmail(),
                         worker.getShirtSize(),
-                        worker.getDomingo(),
-                        worker.getSegunda(),
-                        worker.getTerca(),
-                        worker.getQuarta(),
                         worker.getQuinta(),
                         worker.getSexta(),
                         worker.getSabado(),
+                        worker.getDomingo(),
                         worker.getChosenShows()
                 ))
                 .toList();

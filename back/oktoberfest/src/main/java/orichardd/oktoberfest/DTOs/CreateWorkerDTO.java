@@ -29,9 +29,6 @@ public record CreateWorkerDTO(
         @NotNull
         ShirtSize shirtSize,
         Availability domingo,
-        Availability segunda,
-        Availability terca,
-        Availability quarta,
         Availability quinta,
         Availability sexta,
         Availability sabado,

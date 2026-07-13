@@ -9,4 +9,10 @@ public interface WorkerRepository extends JpaRepository<Worker, Long> {
 
 
     Worker findByCPF(String cpf);
+
+    Worker findByPhoneNumber(String phoneNumber);
+
+    Worker findByEmail(String email);
+
+    Worker findByCPFOrEmailOrPhoneNumber(String cpf, String email, String phoneNumber);
 }

@@ -36,13 +36,10 @@ export default function Add({ isManager }) {
     }
 
     const days = [
-        { key: "domingo", label: "Domingo" },
-        { key: "segunda", label: "Segunda" },
-        { key: "terca", label: "Terça" },
-        { key: "quarta", label: "Quarta" },
         { key: "quinta", label: "Quinta" },
         { key: "sexta", label: "Sexta" },
         { key: "sabado", label: "Sábado" },
+        { key: "domingo", label: "Domingo" }
     ];
 
     const [availability, setAvailability] = useState({
@@ -101,13 +98,11 @@ export default function Add({ isManager }) {
                 email,
                 shirtSize: size,
 
-                domingo: normalizeAvailability(availability.domingo, "Domingo"),
-                segunda: normalizeAvailability(availability.segunda, "Segunda"),
-                terca: normalizeAvailability(availability.terca, "Terça"),
-                quarta: normalizeAvailability(availability.quarta, "Quarta"),
                 quinta: normalizeAvailability(availability.quinta, "Quinta"),
                 sexta: normalizeAvailability(availability.sexta, "Sexta"),
                 sabado: normalizeAvailability(availability.sabado, "Sábado"),
+                domingo: normalizeAvailability(availability.domingo, "Domingo"),
+
 
                 chosenShows,
             };
@@ -217,44 +212,26 @@ export default function Add({ isManager }) {
                 <h2>Disponibilidade</h2>
 
                 {days.map((day) => (
-                    <div
-                        key={day.key}
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "10px",
-                            marginBottom: "10px",
-                        }}
-                    >
-                        <label style={{ width: "90px" }}>
-                            {day.label}
-                        </label>
+                    <div key={day.key} className="availability-row">
+                        <label>{day.label}</label>
 
-                        <input
-                            type="time"
-                            value={availability[day.key].startTime}
-                            onChange={(e) =>
-                                handleAvailabilityChange(
-                                    day.key,
-                                    "startTime",
-                                    e.target.value
-                                )
-                            }
-                        />
-
-                        <span>até</span>
-
-                        <input
-                            type="time"
-                            value={availability[day.key].endTime}
-                            onChange={(e) =>
-                                handleAvailabilityChange(
-                                    day.key,
-                                    "endTime",
-                                    e.target.value
-                                )
-                            }
-                        />
+                        <div className="time-group">
+                            <input
+                                type="time"
+                                value={availability[day.key].startTime}
+                                onChange={(e) =>
+                                    handleAvailabilityChange(day.key, "startTime", e.target.value)
+                                }
+                            />
+                            <span className="time-sep">até</span>
+                            <input
+                                type="time"
+                                value={availability[day.key].endTime}
+                                onChange={(e) =>
+                                    handleAvailabilityChange(day.key, "endTime", e.target.value)
+                                }
+                            />
+                        </div>
                     </div>
                 ))}
                 <h2>Shows de preferência</h2>

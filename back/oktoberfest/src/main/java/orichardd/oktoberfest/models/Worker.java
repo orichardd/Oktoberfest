@@ -45,42 +45,6 @@ public class Worker {
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "startTime",
-                    column = @Column(name = "domingo_start_time", nullable = true)),
-            @AttributeOverride(name = "endTime",
-                    column = @Column(name = "domingo_end_time", nullable = true))
-    })
-    private Availability domingo;
-
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "startTime",
-                    column = @Column(name = "segunda_start_time", nullable = true)),
-            @AttributeOverride(name = "endTime",
-                    column = @Column(name = "segunda_end_time", nullable = true))
-    })
-    private Availability segunda;
-
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "startTime",
-                    column = @Column(name = "terca_start_time", nullable = true)),
-            @AttributeOverride(name = "endTime",
-                    column = @Column(name = "terca_end_time", nullable = true))
-    })
-    private Availability terca;
-
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "startTime",
-                    column = @Column(name = "quarta_start_time", nullable = true)),
-            @AttributeOverride(name = "endTime",
-                    column = @Column(name = "quarta_end_time", nullable = true))
-    })
-    private Availability quarta;
-
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "startTime",
                     column = @Column(name = "quinta_start_time", nullable = true)),
             @AttributeOverride(name = "endTime",
                     column = @Column(name = "quinta_end_time", nullable = true))
@@ -105,6 +69,15 @@ public class Worker {
     })
     private Availability sabado;
 
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "startTime",
+                    column = @Column(name = "domingo_start_time", nullable = true)),
+            @AttributeOverride(name = "endTime",
+                    column = @Column(name = "domingo_end_time", nullable = true))
+    })
+    private Availability domingo;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -113,7 +86,7 @@ public class Worker {
     public Worker() {
     }
 
-    public Worker(String firstName, String lastName, String CPF, Date birthDate, String address, String phoneNumber, String email, ShirtSize shirtSize, Availability domingo, Availability segunda, Availability terca, Availability quarta, Availability quinta, Availability sexta, Availability sabado, List<Shows> chosenShows) {
+    public Worker(String firstName, String lastName, String CPF, Date birthDate, String address, String phoneNumber, String email, ShirtSize shirtSize,   Availability quinta, Availability sexta, Availability sabado, Availability domingo, List<Shows> chosenShows) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.CPF = CPF;
@@ -123,9 +96,6 @@ public class Worker {
         this.email = email;
         this.shirtSize = shirtSize;
         this.domingo = domingo;
-        this.segunda = segunda;
-        this.terca = terca;
-        this.quarta = quarta;
         this.quinta = quinta;
         this.sexta = sexta;
         this.sabado = sabado;
@@ -198,30 +168,6 @@ public class Worker {
 
     public void setDomingo(Availability domingo) {
         this.domingo = domingo;
-    }
-
-    public Availability getSegunda() {
-        return segunda;
-    }
-
-    public void setSegunda(Availability segunda) {
-        this.segunda = segunda;
-    }
-
-    public Availability getTerca() {
-        return terca;
-    }
-
-    public void setTerca(Availability terca) {
-        this.terca = terca;
-    }
-
-    public Availability getQuarta() {
-        return quarta;
-    }
-
-    public void setQuarta(Availability quarta) {
-        this.quarta = quarta;
     }
 
     public Availability getQuinta() {

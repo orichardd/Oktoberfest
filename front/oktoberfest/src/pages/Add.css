@@ -8,9 +8,10 @@
     max-width: 500px;
     margin: 10vh auto 40px auto;
     padding: 30px 25px;
-    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.174);
+    box-shadow: var(--box-shadow);
     border-radius: 20px;
     background-color: rgb(255, 255, 255);
+    box-sizing: border-box;
 }
 
 .add-form h1 {
@@ -23,7 +24,7 @@
     height: 40px;
     border-radius: 10px;
     border: none;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.174);
+    box-shadow: var(--box-shadow);
     padding: 0 10px;
     font-size: 14px;
     box-sizing: border-box;
@@ -46,7 +47,7 @@
     height: 45px;
     border-radius: 10px;
     border: none;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.174);
+    box-shadow: var(--box-shadow);
     background-color: var(--primary);
     font-size: 15px;
     font-weight: bold;
@@ -58,9 +59,192 @@
     cursor: pointer;
     background-color: var(--primary-hover);
 }
-.add-form-header{
+
+.add-form-header {
     display: flex;
     align-items: center;
     justify-content: space-around;
     width: 100%;
+}
+
+.shows-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.show-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+
+.show-option:hover {
+    background-color: var(--light-gray);
+}
+
+.show-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+.availability-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background-color: var(--light-gray);
+    box-sizing: border-box;
+}
+
+.availability-row label {
+    width: 80px;
+    flex-shrink: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.availability-row .time-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.availability-row input[type="time"] {
+    flex: 1;
+    min-width: 0;
+    height: 38px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: var(--box-shadow);
+    padding: 0 10px;
+    font-size: 14px;
+    font-family: inherit;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: inherit;
+    transition: outline 0.15s ease-in-out;
+}
+
+.availability-row input[type="time"]:focus {
+    outline: 2px solid var(--primary);
+}
+
+/* Tint the little clock icon so it matches the theme instead of default gray */
+.availability-row input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: opacity(0.6);
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.availability-row input[type="time"]::-webkit-calendar-picker-indicator:hover {
+    background-color: var(--primary);
+    filter: opacity(1);
+}
+
+.availability-row .time-sep {
+    flex-shrink: 0;
+    font-size: 13px;
+    color: #777;
+}
+
+/* Desktop: give a little more breathing room since there's space to spare */
+@media (min-width: 769px) {
+    .availability-row {
+        padding: 10px 14px;
+    }
+
+    .availability-row input[type="time"] {
+        height: 40px;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    .add-form {
+        width: 92%;
+        margin-top: 6vh;
+        padding: 25px 20px;
+    }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+    .add-form {
+        width: 100%;
+        margin: 10vh auto 24px auto;
+        padding: 20px 16px;
+        border-radius: 14px;
+        gap: 12px;
+    }
+
+    .add-form h1 {
+        font-size: 20px;
+    }
+
+    .add-input,
+    .add-form button[type="submit"] {
+        font-size: 16px; /* prevents iOS zoom-on-focus */
+    }
+
+    .show-option {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .show-option input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+    }
+
+    .availability-row {
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .availability-row label {
+        width: 62px;
+        font-size: 13px;
+    }
+
+    .availability-row input[type="time"] {
+        font-size: 16px; /* prevents iOS zoom-on-focus */
+        padding: 0 6px;
+    }
+
+    .availability-row .time-sep {
+        font-size: 11px;
+    }
+}
+
+/* Very small phones: stack label above the time inputs */
+@media (max-width: 360px) {
+    .availability-row {
+        flex-wrap: wrap;
+    }
+
+    .availability-row label {
+        width: 100%;
+    }
+
+    .availability-row .time-group {
+        width: 100%;
+    }
 }

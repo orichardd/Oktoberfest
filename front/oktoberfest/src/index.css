@@ -5,13 +5,15 @@
     font-family: "SN Pro", "Google Sans", Roboto, Helvetica, Arial, sans-serif;
 }
 :root {
-    --primary: #FFC949;
+    --primary: rgb(255, 201, 73);
     --primary-hover: #eebc3d;
     --background: #f5f5f5;
     --surface: #ffffff;
     --text: #222222;
     --shadow: rgba(0, 0, 0, 0.174);
     --light-gray: #f1f3f4;
+    --box-shadow: 0 2px 4px var(--shadow);
+
 }
 
 .loading{

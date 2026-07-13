@@ -9,39 +9,50 @@ export default function AddPage() {
     const [link, setLink] = useState(false);
     const [copy, setCopy] = useState(false);
     const [url, setUrl] = useState(null);
-    const thisUrl = "localhost:5173/";
+    const thisUrl = window.location.origin + "/";
+
 
     function handleAddClick() {
         setLink(!link);
     }
 
 
-    function handleCopyClick() {
-        const completeUrl = thisUrl + "code/" + url;
-        navigator.clipboard.writeText(completeUrl);
+    async function handleCopyClick() {
+    const completeUrl = thisUrl + "code/" + url;
+    try {
+        await navigator.clipboard.writeText(completeUrl);
         setCopy(true);
-        setTimeout(() => {
-            setCopy(false);
-        }, 2000);
+        setTimeout(() => setCopy(false), 2000);
+    } catch (error) {
+        console.error("Erro ao copiar:", error);
+        alert("Não foi possível copiar o link. Verifique se o site está em HTTPS.");
     }
+}
 
-    function handleShareClick() {
-        const completeUrl = thisUrl + "code/" + url;
+async function handleShareClick() {
+    const completeUrl = thisUrl + "code/" + url;
 
-        if (navigator.share) {
-            navigator.share({
+    if (navigator.share) {
+        try {
+            await navigator.share({
                 title: "Link de cadastro",
                 text: "Use este link para se cadastrar:",
-                url: { url }
-            }).catch((error) => {
-                console.log("Compartilhamento cancelado ou falhou", error);
+                url: completeUrl
             });
-        } else {
-            navigator.clipboard.writeText(completeUrl);
+        } catch (error) {
+            console.log("Compartilhamento cancelado ou falhou", error);
+        }
+    } else {
+        try {
+            await navigator.clipboard.writeText(completeUrl);
             setCopy(true);
             setTimeout(() => setCopy(false), 2000);
+        } catch (error) {
+            console.error("Erro ao copiar:", error);
+            alert("Não foi possível copiar o link. Verifique se o site está em HTTPS.");
         }
     }
+}
 
     useEffect(() => {
 

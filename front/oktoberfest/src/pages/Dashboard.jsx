@@ -5,6 +5,19 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { get } from "../api.js";
 
+// Hook para acompanhar a largura da tela em tempo real
+function useWindowWidth() {
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => setWidth(window.innerWidth);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    return width;
+}
+
 export default function Dashboard() {
 
     const showNames = {
@@ -19,6 +32,10 @@ export default function Dashboard() {
     const [showsData, setShowsData] = useState([]);
     const [workerCount, setWorkerCount] = useState(null);
     const [showCount, setShowCount] = useState(null);
+    const windowWidth = useWindowWidth();
+
+    const isMobile = windowWidth < 480;
+    const isTablet = windowWidth < 1200;
 
     useEffect(() => {
         const fetchWorkerCount = async () => {
@@ -72,23 +89,31 @@ export default function Dashboard() {
             <div className="dashboard-container">
                 <div className="dashboard-item dashboard-stats">
                     <div className="dashboard-up cadastrados">
-                        <p></p>
                         <h1>{workerCount === null ? <img src="/icons/loading.png" alt=" " /> : workerCount}</h1>
                         <p>Cadastrados</p>
                     </div>
                     <div className="dashboard-up shows">
-                        <p></p>
                         <h1>{showCount === null ? <img src="/icons/loading.png" alt=" " /> : showCount}</h1>
                         <p>Shows sem ninguem</p>
                     </div>
                 </div>
 
                 <div className="dashboard-item dashboard-graph">
-                    <ResponsiveContainer width="100%" height={300}>
-                        <BarChart data={showsData}>
+                    <ResponsiveContainer width="100%" height={isMobile ? 300 : isTablet ? 230 : 300}>
+                        <BarChart
+                            data={showsData}
+                            margin={{ top: 5, right: 10, left: isMobile ? -20 : 0, bottom: isMobile ? 40 : 5 }}
+                        >
                             <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
-                            <XAxis dataKey="show" />
-                            <YAxis allowDecimals={false} />
+                            <XAxis
+                                dataKey="show"
+                                tick={{ fontSize: isMobile ? 0 : 12 }}
+                                interval={0}
+                                angle={isMobile ? -45 : isTablet ? -15 : 0}
+                                textAnchor={isMobile ? "end" : "middle"}
+                                height={isMobile ? 60 : 30}
+                            />
+                            <YAxis allowDecimals={false} tick={{ fontSize: isMobile ? 10 : 12 }} width={isMobile ? 25 : isTablet ? 25 : 40} />
                             <Tooltip />
                             <Bar dataKey="colaboradores" fill="var(--primary)" radius={[8, 8, 0, 0]} />
                         </BarChart>

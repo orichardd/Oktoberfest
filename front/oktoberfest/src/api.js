@@ -1,7 +1,7 @@
 // api.js
 import axios from "axios";
 
-const API_BASE_URL = "http://192.168.1.111:8080";
+export const API_BASE_URL = "http://192.168.1.111:8080";
 
 const api = axios.create({
     baseURL: API_BASE_URL,
@@ -60,8 +60,13 @@ export async function get(endpoint) {
 }
 
 export async function post(endpoint, data) {
-    const response = await api.post(endpoint, data);
-    return response.data;
+    try {
+        const response = await api.post(endpoint, data);
+        return response.data;
+    } catch (error) {
+        alert(error.response?.data.message || "Ocorreu um erro inesperado.");
+        throw error;
+    }
 }
 
 export default api;
