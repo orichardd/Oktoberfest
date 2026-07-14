@@ -33,7 +33,7 @@ export default function LoginPage(){
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <button type="submit" className="login-button">
+                    <button type="submit" className="regularButton login-button">
                         <img src="/icons/right-arrow.png" alt="" />
                     </button>
                 </form>

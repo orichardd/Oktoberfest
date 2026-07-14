@@ -13,7 +13,7 @@ export default function Header() {
         <>
             <header className="header">
                 <img src="/img/oktoberlogo.png" alt="logo da oktoberfest de igrejinha." />
-                <button className="header-button" onClick={handleClick}>
+                <button className="regularButton header-button" onClick={handleClick}>
                     <img src="/icons/icon.png" alt="" />
                 </button>
             </header>
@@ -44,7 +44,7 @@ export default function Header() {
                     Desenvolvido para uso interno da organização da Oktoberfest 2026 de Igrejinha.
                 </p>
                 <p>
-                    Versão: 0.71
+                    Versão: 0.81
                 </p>
             </div>
         </>
