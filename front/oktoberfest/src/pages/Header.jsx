@@ -9,6 +9,14 @@ export default function Header() {
         setIsAboutVisible(!isAboutVisible);
     }
 
+    const handleOutsideClick = (event) => {
+        if (isAboutVisible && !event.target.closest('.about-section') && !event.target.closest('.header-button')) {
+            setIsAboutVisible(false);
+        }
+    }
+
+    document.addEventListener('click', handleOutsideClick);
+
     return (
         <>
             <header className="header">
@@ -19,11 +27,16 @@ export default function Header() {
             </header>
             <div className={`about-section ${isAboutVisible ? "show" : ""}`}>
                 <h1>Sobre o sistema</h1>
-                <p>Este sistema foi desenvolvido voluntariamente para auxiliar a organização e a gestão dos colaboradores da Oktoberfest 2026 de Igrejinha.</p>
+                <p>Este sistema foi desenvolvido voluntariamente para auxiliar a organização dos Amigos da Bilheteria, uma comunidade dedicada a apoiar a eventos locais.</p>
                 <p>O projeto é mantido de forma independente, sem fins lucrativos, com foco em facilitar o trabalho da equipe organizadora.</p>
+                <h3>Desenvolvido por:</h3>
                 <div className="member-card">
-                    <a href="https://pokemondb.net/pokedex/farfetchd"><img src="https://img.pokemondb.net/sprites/black-white/anim/normal/farfetchd.gif" alt="Farfetch'd" /></a>
-
+                    <a href="https://pokemondb.net/pokedex/farfetchd">
+                        <img
+                            src="img/farfetchd.gif"
+                            alt="Farfetch'd"
+                        />
+                    </a>
                     <div>
                         <h3>Richard Almeida</h3>
                         <span>Arquitetura, desenvolvimento e infraestrutura</span>
@@ -32,8 +45,12 @@ export default function Header() {
                 </div>
 
                 <div className="member-card">
-                    <a href="https://pokemondb.net/pokedex/darumaka"><img src="https://img.pokemondb.net/sprites/black-white/anim/normal/psyduck.gif" alt="Darumaka" /></a>
-
+                    <a href="https://pokemondb.net/pokedex/psyduck">
+                        <img
+                            src="img/psyduck.gif"
+                            alt="Psyduck"
+                        />
+                    </a>
                     <div>
                         <h3>Miguel Fulber Gomes</h3>
                         <span>Suporte</span>
@@ -44,7 +61,7 @@ export default function Header() {
                     Desenvolvido para uso interno da organização da Oktoberfest 2026 de Igrejinha.
                 </p>
                 <p>
-                    Versão: 0.81
+                    Versão: 0.82
                 </p>
             </div>
         </>
